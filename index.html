@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title>Exemplo de Código Java</title>
+    <title>Código Java Formatado</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -20,7 +20,7 @@
     </style>
 </head>
 <body>
-    <h2>Código Java</h2>
+    <h2>Exemplo de Código Java</h2>
     <pre><code>
 package com.interview;
 
@@ -29,7 +29,20 @@ import java.util.stream.Collectors;
 
 public class Main {
     public static void main(String[] args) {
-        mapaDeFrequencia();
+        // filtrarNumerosPares();
+        // converterStringsParaMaisculas();
+        // somaDeNumeros();
+        // encontrarMaiorEMenorValor();
+        // contarStringMaisQue5Caracteres();
+        // ordenarUmaListaCrescente();
+        // ordenarUmaListaDecrescente();
+        // removerDuplicatas();
+        // agrupamentoDePalavrasPorComprimento();
+        // valoresAoQuadrados();
+        // concatenarStrings();
+        // encontrarPalavrasQueComecamComUmaLetra();
+        // calcularMedia();
+        // mapaDeFrequencia();
     }
 
     private static void mapaDeFrequencia() {
@@ -37,6 +50,88 @@ public class Main {
         Map<String, Long> mapWordsResp = listWords.stream()
             .collect(Collectors.groupingBy(w -> w, Collectors.counting()));
         System.out.println(mapWordsResp);
+    }
+
+    private static void calcularMedia() {
+        List<Integer> listaNumeros = Arrays.asList(10,20,30,40,50);
+        OptionalDouble avg = listaNumeros.stream().mapToInt(Integer::intValue).average();
+        System.out.println(avg);
+    }
+
+    private static void encontrarPalavrasQueComecamComUmaLetra() {
+        List<String> listStrings = Arrays.asList("abacaxi","limao","abacate","maça","banana");
+        List<String> listStringsResp = listStrings.stream().filter(i-> i.startsWith("a")).toList();
+        System.out.println(listStringsResp);
+    }
+
+    private static void concatenarStrings() {
+        List<String> listStrings = Arrays.asList("java","é","muito","legal","tche!");
+        String listStringsResp = listStrings.stream().collect(Collectors.joining(" "));
+        System.out.println(listStringsResp);
+    }
+
+    private static void valoresAoQuadrados() {
+        List<Integer> listaNumeros = Arrays.asList(1,2,3,4,5);
+        List<Integer> listaNumerosQuadrados = listaNumeros.stream().map(i-> i * i).toList();
+        System.out.println(listaNumerosQuadrados);
+    }
+
+    private static void agrupamentoDePalavrasPorComprimento() {
+        List<String> listStrings = Arrays.asList("cachorro","gato","elefante","leão","tigre");
+        Map<Integer, List<String>> listStringsResp = listStrings.stream().collect(Collectors.groupingBy(String::length));
+        System.out.println(listStringsResp);
+    }
+
+    private static void removerDuplicatas() {
+        List<Integer> listaNumeros = Arrays.asList(1,2,2,3,4,4,5,5,6,6);
+        List<Integer> listaNumerosResp = listaNumeros.stream().distinct().toList();
+        System.out.println(listaNumerosResp);
+    }
+
+    private static void ordenarUmaListaDecrescente() {
+        List<Integer> listaNumeros = Arrays.asList(9,3,7,1,5,2,8);
+        List<Integer> listaNumerosResp = listaNumeros.stream().sorted((a,b) -> (b-a)).toList();
+        System.out.println(listaNumerosResp);
+    }
+
+    private static void ordenarUmaListaCrescente() {
+        List<Integer> listaNumeros = Arrays.asList(9,3,7,1,5,2,8);
+        List<Integer> listaNumerosResp = listaNumeros.stream().sorted().toList();
+        System.out.println(listaNumerosResp);
+    }
+
+    private static void contarStringMaisQue5Caracteres() {
+        List<String> listStrings = Arrays.asList("cachorro","gato","elefante","leão","tigre");
+        List<String> listStringsResp = listStrings.stream().filter(i-> i.length() > 5).toList();
+        System.out.println(listStringsResp);
+    }
+
+    private static void encontrarMaiorEMenorValor() {
+        List<Integer> listaNumeros = Arrays.asList(3,7,2,9,12,5);
+        OptionalInt maiorValor = listaNumeros.stream().mapToInt(Integer::intValue).max();
+        OptionalInt menorValor = listaNumeros.stream().mapToInt(Integer::intValue).min();
+        System.out.println("Maior valor => " + maiorValor.getAsInt() + " Menor valor => " + menorValor.getAsInt());
+
+        IntSummaryStatistics stats = listaNumeros.stream().mapToInt(Integer::intValue).summaryStatistics();
+        System.out.println("Maior valor => " + stats.getMax() + " Menor valor => " + stats.getMin());
+    }
+
+    private static void somaDeNumeros() {
+        List<Integer> listaNumeros = Arrays.asList(5,10,15,20,25);
+        Integer soma = listaNumeros.stream().mapToInt(Integer::intValue).sum();
+        System.out.println(soma);
+    }
+
+    private static void converterStringsParaMaisculas() {
+        List<String> listWords = Arrays.asList("java", "api", "exemplo", "stream");
+        List<String> listWordsResp = listWords.stream().map(String::toUpperCase).toList();
+        System.out.println(listWordsResp);
+    }
+
+    private static void filtrarNumerosPares() {
+        List<Integer> listaNumeros = Arrays.asList(1,2,3,4,5,6,7,8,9,10);
+        List<Integer> listaNumerosPares = listaNumeros.stream().filter(i-> i % 2 == 0).toList();
+        System.out.println(listaNumerosPares);
     }
 }
     </code></pre>
