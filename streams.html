@@ -1,0 +1,47 @@
+package com.interview;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.interview.models.Dados;
+import com.interview.models.Pessoa;
+
+import java.util.List;
+
+public class MainSap {
+    public static void main(String[] args) {
+        leituraComChave();
+        leituraListaSemChave();
+
+    }
+
+    private static void leituraListaSemChave() {
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        String jsonList = """
+              [
+                { "nome": "Ana", "idade": 25, "cidade": "Porto Alegre" },
+                { "nome": "Bruno", "idade": 30, "cidade": "Torres" },
+                { "nome": "Carla", "idade": 28, "cidade": "Florianópolis" }
+              ]
+        """;
+
+        List<Pessoa> listaPessoas = List.of(gson.fromJson(jsonList, Pessoa[].class));
+        listaPessoas.forEach(p -> System.out.println(p.getNome()));
+    }
+
+    private static void leituraComChave() {
+        String json = """
+            {
+              "data": [
+                { "nome": "Ana", "idade": 25, "cidade": "Porto Alegre" },
+                { "nome": "Bruno", "idade": 30, "cidade": "Torres" },
+                { "nome": "Carla", "idade": 28, "cidade": "Florianópolis" }
+              ]
+            }
+        """;
+
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        Dados dados = gson.fromJson(json, Dados.class);
+        List<Pessoa> listPessoas = dados.getData();
+        listPessoas.forEach(p -> System.out.println(p.getNome()));
+    }
+}
